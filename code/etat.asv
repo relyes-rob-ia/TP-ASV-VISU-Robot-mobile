@@ -1,0 +1,17 @@
+
+
+function [next_config] = etat(config, qpt, Te)
+    % config : configuration courante
+    % qpt : commande generee
+    % Te : periode d'echantillonnage
+  
+    v = qpt(1);
+    w = qpt(2);
+    wpl = qpt(3);
+    
+    next_config = config;
+    next_config.x = config(1) + Te * v * cos(config(3));
+    next_config.y = config(2) + Te * v * sin(config(3));
+    next_config.theta = config(3).theta + Te * w;
+    next_config.qpl = config.qpl + Te * wpl;
+end
